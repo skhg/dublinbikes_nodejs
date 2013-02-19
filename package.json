@@ -1,0 +1,7 @@
+{
+	"name" : "dublinBikesAPI",
+	"version" : "0.0.1",
+	"dependencies" : {
+		"eyes" : "0.1.8"
+	}
+}
