@@ -100,30 +100,74 @@ function makeNewPromiseWithID(id, funcRef, info){
 	return myPromise;
 }
 
+
+
+
 /*
-Functions to do searching for things
+Public functions
+---------------------
 */
 
+
+
+
+
+/**
+ * Do a web request to return a current list of all DublinBikes stations
+ *
+ * @param {function} onLoaded What to do with the list of loaded stations
+ */
 exports.getAllStations = function(onLoaded){
 	var stationsListURL = "http://www.dublinbikes.ie/service/carto"
 
 	sendQuery(stationsListURL, readStationList, onLoaded)
 }
 
+/**
+ * Do a web request to return the current status of one station
+ *
+ * @param {number} stationID The station number to look up
+ * @param {function} onLoaded What to do with the loaded status info
+ */
 exports.getStationStatus = function(stationID, onLoaded){
 	var stationBaseURL = "http://www.dublinbikes.ie/service/stationdetails/dublin/";
 
 	sendQuery(stationBaseURL+stationID,readStationStatus, onLoaded);
 }
 
-exports.findClosestStation = function(myLat, myLong, openOnly, limit, onFound){
+/**
+ * Find the closest DublinBikes stations to a given latitude/longitude
+ *
+ * @param {number} myLat A latitude in decimal format (e.g. 53.342451)
+ * @param {number} myLong A longitude in decimal format (e.g. -6.266667)
+ * @param {boolean} openOnly Filter for only stations which are currently open
+ * @param {number} limit Limit the number of stations returned in the list
+ * @param {function} onFound What to do with the found status info
+ * @param {array} stations (Optional) provide a list of stations to search. If left blank we do a web query to retrieve them
+ */
+exports.findClosestStation = function(myLat, myLong, openOnly, limit, onFound, stations=null){
 
-	this.getAllStations(function(stations){
+	if(stations==null){
+		this.getAllStations(function(stations){
+			onFound(getClosestToLatLng(stations, myLat, myLong, limit, openOnly));
+		});
+	}else{
 		onFound(getClosestToLatLng(stations, myLat, myLong, limit, openOnly));
-	});
+	}
+	
 }
 
-exports.findClosestBike = function(myLat, myLong, stationsLimit, minimumBikes, onFound){
+/**
+ * Find the closest DublinBike bicycles that are currently available
+ *
+ * @param {number} myLat A latitude in decimal format (e.g. 53.342451)
+ * @param {number} myLong A longitude in decimal format (e.g. -6.266667)
+ * @param {number} stationsLimit Limit the number of stations to search
+ * @param {number} minimumBikes Exclude any stations with available bikes under this limit
+ * @param {function} onFound What to do with the found bike information
+ * @param {array} stations (Optional) provide a list of stations to search. If left blank we do a web query to retrieve them
+ */
+exports.findClosestBike = function(myLat, myLong, stationsLimit, minimumBikes, onFound, stations=null){
 
 	this.findClosestStation(myLat, myLong, true, stationsLimit, (stationsList)=>{
 		
@@ -147,5 +191,5 @@ exports.findClosestBike = function(myLat, myLong, stationsLimit, minimumBikes, o
 			onFound(filteredForAvailability);
 		});
 
-	});
+	}, stations);
 }

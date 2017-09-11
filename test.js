@@ -1,5 +1,5 @@
 var bike_api = require('./dublinbikes.node.js');
-var eyes = require('eyes'); //for debug use
+var eyes = require('eyes');
 
 
 
@@ -26,7 +26,7 @@ printClosestBike = function(myLat, myLong, minimumBikes, limit = 5){
 
 
 
-// printStationsList(); //works
-// printStationStatus(1); //works
-// printClosestStation(53.342451, -6.266667, false); //works
+// printStationsList();
+// printStationStatus(1);
+// printClosestStation(53.342451, -6.266667, false);
 // printClosestBike(53.342451, -6.266667, 2, 2);
