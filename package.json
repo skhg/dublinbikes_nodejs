@@ -1,10 +1,26 @@
 {
-	"name" : "dublinBikesAPI",
-	"version" : "0.0.1",
-	"dependencies" : {
-		"eyes" : "0.1.8",
-		"fs" : "0.0.0",
-		"xml2js" : "0.2.2",
-		"request" : "2.12.0"
-	}
+  "name": "dublinbikes_api",
+  "version": "0.0.1",
+  "dependencies": {
+    "eyes": "0.1.8",
+    "fs": "0.0.0",
+    "xml2js": "0.2.2",
+    "request": "2.12.0"
+  },
+  "description": "dublinBikesAPI ==============",
+  "main": "dublinbikes.node.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skhg/dublinBikesAPI.git"
+  },
+  "author": "Jack Higgins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skhg/dublinBikesAPI/issues"
+  },
+  "homepage": "https://github.com/skhg/dublinBikesAPI#readme"
 }
