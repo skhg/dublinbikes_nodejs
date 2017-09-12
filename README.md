@@ -16,4 +16,4 @@ node.js with the following modules
 
 Use
 ==
-Uncomment the lines in test.js to begin playing with it
+Download to your machine and uncomment the lower lines in test.js to begin playing with it. Run with `node test.js`
