@@ -1,5 +1,3 @@
-var fs = require('fs');
-var eyes = require('eyes'); //for debug use
 var xml2js = require('xml2js');
 var request = require('request');
 
