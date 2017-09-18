@@ -14,7 +14,6 @@ Requirements
 node.js with the following modules
 * xml2js
 * request
-* eyes
 
 Use
 ==

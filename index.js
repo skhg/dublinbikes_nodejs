@@ -7,21 +7,34 @@ var request = require('request');
 Internal functions to do the requests
 */
 
+function parseXMLresponse(error, response, data, processData, handleOutput, handleError){
+	if (error || response.statusCode !== 200) {
+		if(response!=undefined){
+			return handleError("Error: "+error+" Response: "+response);
+		}else{
+			return handleError("Error: "+error);
+		}
+	}else{
+		var parser = xml2js.Parser();
+
+		parser.parseString(data, function(parseErr,result){
+			if(parseErr){
+				return handleError("Parsing failure: "+parseErr);
+			}
+			processData(result,handleOutput);
+		});
+	}
+}
+
 function sendQuery(url, processWebData, handleOutput){
 	request({ uri:url }, function (error, response, body) {
-		if (error && response.statusCode !== 200) {
-			console.err("Error "+response.statusCode+" : "+error)
-		}
-
-		var parser = new xml2js.Parser();
-		
-		parser.parseString(body, function(err,result){ processWebData(result,handleOutput)});
+		parseXMLresponse(error, response, body, processWebData, handleOutput);
 	});
 }
 
 function readStationList(webResponse, handleResult){
-	allMarkers = webResponse["carto"]["markers"][0]["marker"];
-	results = []
+	var allMarkers = webResponse["carto"]["markers"][0]["marker"];
+	var results = [];
 
 	for (var i = 0; i < allMarkers.length; i++) {
 		results.push(allMarkers[i]["$"])
