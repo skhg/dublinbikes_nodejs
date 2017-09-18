@@ -13,7 +13,6 @@ results
 node_modules
 coverage
 
-package-lock.json
 npm-debug.log
 
 test/demo.js
