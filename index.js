@@ -48,20 +48,20 @@ function readStationStatus(webResponse, handleResult){
 }
 
 function getDistanceFromPoint(station, myLat, myLong){
-	stationLat = parseFloat(station["lat"]);
-	stationLong = parseFloat(station["lng"]);
+	var stationLat = parseFloat(station["lat"]);
+	var stationLong = parseFloat(station["lng"]);
 
-	mylat = parseFloat(myLat);
-	myLong = parseFloat(myLong);
+	var mylat = parseFloat(myLat);
+	var myLong = parseFloat(myLong);
 
 	return Math.sqrt(Math.pow((myLat - stationLat),2) + Math.pow((myLong - stationLong),2));
 }
 
 function sortStationsByDistance(stationsList, myLat, myLong){
-	sortedList = [];
+	var sortedList = [];
 
 	for (var i = 0; i < stationsList.length; i++) {
-		distance = getDistanceFromPoint(stationsList[i], myLat, myLong);
+		var distance = getDistanceFromPoint(stationsList[i], myLat, myLong);
 
 		sortedList.push([stationsList[i],distance]);
 	};
@@ -75,10 +75,10 @@ function sortStationsByDistance(stationsList, myLat, myLong){
 
 function getClosestToLatLng(stationsList, myLat, myLong, limit, openOnly){
 	
-	stationsList = sortStationsByDistance(stationsList,myLat,myLong);
+	var stationsList = sortStationsByDistance(stationsList,myLat,myLong);
 
-	closest = [];
-	closestDist = Number.MAX_VALUE;
+	var closest = [];
+	var closestDist = Number.MAX_VALUE;
 
 	for (var i = 0; i < stationsList.length; i++) {
 		if(closest.length == limit){
@@ -86,7 +86,7 @@ function getClosestToLatLng(stationsList, myLat, myLong, limit, openOnly){
 		}
 
 		if(openOnly){
-			stationOpen = stationsList[i]["open"];
+			var stationOpen = stationsList[i]["open"];
 
 			if(stationOpen!="1"){
 				continue;
@@ -184,20 +184,20 @@ exports.findClosestBike = function(myLat, myLong, stationsLimit, minimumBikes, o
 
 	this.findClosestStation(myLat, myLong, true, stationsLimit, (stationsList)=>{
 		
-		allPromises = [];
+		var allPromises = [];
 
 		for (var i = 0; i < stationsList.length; i++) {
-			stationID = stationsList[i]["number"];
+			var stationID = stationsList[i]["number"];
 			
-			myPromise = makeNewPromiseWithID(stationID, this.getStationStatus,stationsList[i]);
+			var myPromise = makeNewPromiseWithID(stationID, this.getStationStatus,stationsList[i]);
 			allPromises.push(myPromise);
 		};
 
 		Promise.all(allPromises).then((results)=>{
 
-			first = results[0];
+			var first = results[0];
 
-			filteredForAvailability = results.filter(function(item){
+			var filteredForAvailability = results.filter(function(item){
 				return item[0]["available"][0] >= minimumBikes;
 			});
 

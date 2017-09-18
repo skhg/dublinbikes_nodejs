@@ -1,8 +1,7 @@
 {
   "name": "dublinbikes_js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "dependencies": {
-    "eyes": "latest",
     "request": "^2.81.0",
     "xml2js": "^0.4.19"
   },
