@@ -1,3 +1,5 @@
+'use strict';
+
 var xml2js = require('xml2js');
 var request = require('request');
 
