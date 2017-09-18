@@ -1,7 +1,7 @@
 dublinbikes_nodejs
 =
 
-[![Build Status](https://travis-ci.org/skhg/dublinbikes_nodejs.svg?branch=master)](https://travis-ci.org/skhg/dublinbikes_nodejs) [![Coverage Status](https://coveralls.io/repos/github/skhg/dublinbikes_nodejs/badge.svg)](https://coveralls.io/github/skhg/dublinbikes_nodejs)
+[![Build Status](https://travis-ci.org/skhg/dublinbikes_nodejs.svg?branch=master)](https://travis-ci.org/skhg/dublinbikes_nodejs) [![Coverage Status](https://coveralls.io/repos/github/skhg/dublinbikes_nodejs/badge.svg?branch=master)](https://coveralls.io/github/skhg/dublinbikes_nodejs?branch=master)
 
 A small [node.js](https://nodejs.org/en/) utility designed to retrieve status information from the [DublinBikes](http://www.dublinbikes.ie/) bike-sharing service. The API provides methods to:
 * Get the list of all stations
