@@ -38,7 +38,7 @@ function readStationList(webResponse, handleResult){
 
 	for (var i = 0; i < allMarkers.length; i++) {
 		results.push(allMarkers[i]["$"])
-	};
+	}
 
 	handleResult(results);
 }
@@ -51,8 +51,8 @@ function getDistanceFromPoint(station, myLat, myLong){
 	var stationLat = parseFloat(station["lat"]);
 	var stationLong = parseFloat(station["lng"]);
 
-	var mylat = parseFloat(myLat);
-	var myLong = parseFloat(myLong);
+	myLat = parseFloat(myLat);
+	myLong = parseFloat(myLong);
 
 	return Math.sqrt(Math.pow((myLat - stationLat),2) + Math.pow((myLong - stationLong),2));
 }
@@ -64,7 +64,7 @@ function sortStationsByDistance(stationsList, myLat, myLong){
 		var distance = getDistanceFromPoint(stationsList[i], myLat, myLong);
 
 		sortedList.push([stationsList[i],distance]);
-	};
+	}
 
 	return sortedList.sort(function(a,b){
 		return a[1] - b[1]
@@ -75,10 +75,9 @@ function sortStationsByDistance(stationsList, myLat, myLong){
 
 function getClosestToLatLng(stationsList, myLat, myLong, limit, openOnly){
 	
-	var stationsList = sortStationsByDistance(stationsList,myLat,myLong);
+	stationsList = sortStationsByDistance(stationsList,myLat,myLong);
 
 	var closest = [];
-	var closestDist = Number.MAX_VALUE;
 
 	for (var i = 0; i < stationsList.length; i++) {
 		if(closest.length == limit){
@@ -94,13 +93,9 @@ function getClosestToLatLng(stationsList, myLat, myLong, limit, openOnly){
 		}
 
 		closest.push(stationsList[i]);
-	};
+	}
 
 	return closest;
-}
-
-function getBikesAtStation(station){
-	return parseInt(station["available"]);
 }
 
 function makeNewPromiseWithID(id, funcRef, info){
@@ -191,12 +186,9 @@ exports.findClosestBike = function(myLat, myLong, stationsLimit, minimumBikes, o
 			
 			var myPromise = makeNewPromiseWithID(stationID, this.getStationStatus,stationsList[i]);
 			allPromises.push(myPromise);
-		};
+		}
 
 		Promise.all(allPromises).then((results)=>{
-
-			var first = results[0];
-
 			var filteredForAvailability = results.filter(function(item){
 				return item[0]["available"][0] >= minimumBikes;
 			});
