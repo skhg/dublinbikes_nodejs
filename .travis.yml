@@ -9,7 +9,7 @@ install:
 script:
   - npm run cover
   - npm install eslint
-  - eslint index.js ./test/test.js
+  - eslint index.js
 
 # Send coverage data to Coveralls
 after_script: "cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js"
