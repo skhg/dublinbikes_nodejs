@@ -9,12 +9,12 @@ var parseXMLresponse = api.__get__('parseXMLresponse');
 
 describe('parseXMLresponse', () => {
 	it('should not call processData if any error exists', () => {
-		parseXMLresponse("myErr", undefined, undefined, (d)=>{}, (h)=>{throw "Should not be called"}, e=>{});
+		parseXMLresponse("myErr", undefined, undefined, ()=>{}, ()=>{throw "Should not be called"}, ()=>{});
 	});
 
 	it('should log an error if the web result contains one', () => {
 		var errorOut;
-		parseXMLresponse("myErr", undefined, undefined, (d)=>{}, (h)=>{}, e=>{errorOut=e});
+		parseXMLresponse("myErr", undefined, undefined, ()=>{}, ()=>{}, e=>{errorOut=e});
 
 		expect(errorOut).to.equal("Error: myErr");
 	});
@@ -23,7 +23,7 @@ describe('parseXMLresponse', () => {
 		var goodResponse = { 'statusCode': 200};
 		var nonsenseData = "88hwf489438hf89wh48f8w483";
 
-		parseXMLresponse(undefined, goodResponse, nonsenseData, (d)=>{}, (h)=>{throw "Should not be called"},(e)=>{});
+		parseXMLresponse(undefined, goodResponse, nonsenseData, ()=>{}, ()=>{throw "Should not be called"},()=>{});
 	});
 
 	it('should log an error if the parsing fails', () => {
@@ -31,7 +31,7 @@ describe('parseXMLresponse', () => {
 		var nonsenseData = "88hwf489438hf89wh48f8w483";
 
 		var loggedError;
-		parseXMLresponse(undefined, goodResponse, nonsenseData, (d)=>{}, (h)=>{},(e)=>{loggedError = e});
+		parseXMLresponse(undefined, goodResponse, nonsenseData, ()=>{}, ()=>{},(e)=>{loggedError = e});
 
 		expect(loggedError).to.include("Parsing failure: Error: Non-whitespace before first tag.");
 	});

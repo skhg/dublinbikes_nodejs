@@ -16,3 +16,5 @@ coverage
 npm-debug.log
 
 test/demo.js
+
+publish_to_npm.sh
