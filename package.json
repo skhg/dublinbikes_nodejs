@@ -2,7 +2,7 @@
   "name": "dublinbikes_js",
   "version": "0.1.3",
   "dependencies": {
-    "request": "^2.81.0",
+    "request": "^2.84.0",
     "xml2js": "^0.4.19"
   },
   "description": "dublinBikesAPI ==============",
