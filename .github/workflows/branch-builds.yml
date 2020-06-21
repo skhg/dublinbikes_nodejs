@@ -29,6 +29,9 @@ jobs:
       - run: npm install
       - run: npm run cover
       - run: npm install eslint
-      - run: eslint index.js
         env:
           CI: true
+
+      - name: Run ESlint
+        run: |
+          eslint index.js
