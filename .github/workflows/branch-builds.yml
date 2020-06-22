@@ -28,7 +28,7 @@ jobs:
       - run: npm ci
       - run: npm run test
       - run: npm run cover
-      - run: npm install eslint
+      - run: npm install -g eslint
         env:
           CI: true
 
