@@ -1,9 +1,7 @@
 dublinbikes_nodejs
 =
 
-[![Build Status](https://travis-ci.org/skhg/dublinbikes_nodejs.svg?branch=master)](https://travis-ci.org/skhg/dublinbikes_nodejs) [![Coverage Status](https://coveralls.io/repos/github/skhg/dublinbikes_nodejs/badge.svg?branch=master)](https://coveralls.io/github/skhg/dublinbikes_nodejs?branch=master) [![Dependencies](https://david-dm.org/skhg/dublinbikes_nodejs.svg)](https://david-dm.org/skhg/dublinbikes_nodejs.svg) [![Known Vulnerabilities](https://snyk.io/test/github/skhg/dublinbikes_nodejs/badge.svg)](https://snyk.io/test/github/skhg/dublinbikes_nodejs) [![npm](https://img.shields.io/npm/dt/dublinbikes_js.svg)](https://www.npmjs.com/package/dublinbikes_js)
-
-[![NPM](https://nodei.co/npm/dublinbikes_js.png)](https://nodei.co/npm/dublinbikes_js/)
+[![Build Status](https://travis-ci.org/skhg/dublinbikes_nodejs.svg?branch=master)](https://travis-ci.org/skhg/dublinbikes_nodejs) [![Coverage Status](https://coveralls.io/repos/github/skhg/dublinbikes_nodejs/badge.svg?branch=master)](https://coveralls.io/github/skhg/dublinbikes_nodejs?branch=master) [![Dependencies](https://david-dm.org/skhg/dublinbikes_nodejs.svg)](https://david-dm.org/skhg/dublinbikes_nodejs.svg) [![Known Vulnerabilities](https://snyk.io/test/github/skhg/dublinbikes_nodejs/badge.svg)](https://snyk.io/test/github/skhg/dublinbikes_nodejs) ![npm](https://img.shields.io/npm/v/dublinbikes_js)
 
 A [node.js](https://nodejs.org/en/) module designed to retrieve status information from the [DublinBikes](http://www.dublinbikes.ie/) bike-sharing service. The API provides methods to:
 * Get the list of all stations
