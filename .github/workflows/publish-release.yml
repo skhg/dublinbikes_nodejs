@@ -1,0 +1,33 @@
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v2
+
+      - name: "Set up Node"
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+
+      - name: "Replace version string with next release number"
+        run: |
+          sed -i "s/0.0.0/${VERSION_REF##*/}/g" package.json
+        env:
+          VERSION_REF: ${{ github.ref }}
+
+      - name: "Install package"
+        run: |
+          npm install
+
+      - name: "Push release to NPM"
+        run: |
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
